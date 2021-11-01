@@ -3,12 +3,19 @@
 This program is to emulate a Poker Game on PC using Java Netbeans IDE
 
 ## General
-
-<p>The software used for this project is JAVA and was coded on the NETBeans platform by Adam and Nguyen.  The benefit of using JAVA over other languages is the ease of use that JAVA’s versatility given us as programmers and along with NETBeans made for a great fit together for this project of coding and generating a GUI interface making for a easy to use structure to promote ease of play by users of any reasonable age. Java is also a standardized language that helps the program be run on almost any platform, OS.</p>
+<p>In this project we are implementing a Texas Hold’em Poker game where the objective is to win the best hand out of a group of players. Players are initially given two cards, called “hole” cards, that they hold throughout the game (hence the name). They then try to make the best five card hand out of their initial holes and five community cards.</p>
 
 ## Technology
-
-
+<p>The software used for this project is JAVA and was coded on the NETBeans platform by Adam and Nguyen.  The benefit of using JAVA over other languages is the ease of use that JAVA’s versatility given us as programmers and along with NETBeans made for a great fit together for this project of coding and generating a GUI interface making for a easy to use structure to promote ease of play by users of any reasonable age. Java is also a standardized language that helps the program be run on almost any platform, OS. We are using windows 10, snipping tool, and paint to design the images. 
+Below are the softwares versions:
+Product Version: NetBeans IDE 8.2 (Build 201609300101)
+Updates: Updates available to version NetBeans 8.2 Patch 2
+Java: 1.8.0_111; Java HotSpot(TM) 64-Bit Server VM 25.111-b14
+Runtime: Java(TM) SE Runtime Environment 1.8.0_111-b14
+System: Windows 10 version 10.0 running on amd64; Cp1252; en_US (nb)
+User directory: C:\Users\madam\AppData\Roaming\NetBeans\8.2
+Cache directory: C:\Users\madam\AppData\Local\NetBeans\Cache\8.2
+</p>
 
 ## Installation
 <ul>
