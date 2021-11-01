@@ -16,6 +16,7 @@ This program is to emulate a Poker Game on PC using Java Netbeans IDE
 ## Installation
 <ul>
   <li>To run this game your machine will need Java 1.8 use the link to download https://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html</li>
+  <li>NetBeans IDE 8.2</li> 
   <li>System Requirement: 2 GB RAM, at least 1 GHz Processor</li>
   <li>OS Requirement: Linux, Windows or IOs</li>
   <li>Issue a pull request or Download zip to get the program</li>
