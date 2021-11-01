@@ -15,7 +15,6 @@ Runtime: Java(TM) SE Runtime Environment 1.8.0_111-b14
 System: Windows 10 version 10.0 running on amd64; Cp1252; en_US (nb)
 User directory: C:\Users\madam\AppData\Roaming\NetBeans\8.2
 Cache directory: C:\Users\madam\AppData\Local\NetBeans\Cache\8.2
-</p>
 
 ## Installation
 <ul>
