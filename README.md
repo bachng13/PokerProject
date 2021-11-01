@@ -6,8 +6,8 @@ This program is to emulate a Poker Game on PC using Java Netbeans IDE
 <p>In this project we are implementing a Texas Hold’em Poker game where the objective is to win the best hand out of a group of players. Players are initially given two cards, called “hole” cards, that they hold throughout the game (hence the name). They then try to make the best five card hand out of their initial holes and five community cards.</p>
 
 ## Technology
-<p>The software used for this project is JAVA and was coded on the NETBeans platform by Adam and Nguyen.  The benefit of using JAVA over other languages is the ease of use that JAVA’s versatility given us as programmers and along with NETBeans made for a great fit together for this project of coding and generating a GUI interface making for a easy to use structure to promote ease of play by users of any reasonable age. Java is also a standardized language that helps the program be run on almost any platform, OS. We are using windows 10, snipping tool, and paint to design the images. 
-Below are the softwares versions:
+<p>The software used for this project is JAVA and was coded on the NETBeans platform by Adam and Nguyen.  The benefit of using JAVA over other languages is the ease of use that JAVA’s versatility given us as programmers and along with NETBeans made for a great fit together for this project of coding and generating a GUI interface making for a easy to use structure to promote ease of play by users of any reasonable age. Java is also a standardized language that helps the program be run on almost any platform, OS. We are using windows 10, snipping tool, and paint to design the images.</p>
+<p>Below are the softwares versions:</p>
 Product Version: NetBeans IDE 8.2 (Build 201609300101)
 Updates: Updates available to version NetBeans 8.2 Patch 2
 Java: 1.8.0_111; Java HotSpot(TM) 64-Bit Server VM 25.111-b14
