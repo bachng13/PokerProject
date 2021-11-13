@@ -20,6 +20,7 @@ public class GameInterface extends javax.swing.JFrame {
     public GameInterface() {
         initComponents();
     }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -30,7 +31,6 @@ public class GameInterface extends javax.swing.JFrame {
         playerBestHand = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         computerDecision = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabelComputerCard4 = new javax.swing.JLabel();
@@ -60,7 +60,6 @@ public class GameInterface extends javax.swing.JFrame {
         jLabelCommunityCard5 = new javax.swing.JLabel();
         jButtonRaise = new javax.swing.JButton();
         jButtonFold = new javax.swing.JButton();
-        jTextFieldRaise = new javax.swing.JTextField();
         jTextFieldPlayerBet = new javax.swing.JTextField();
         jTextFieldComputerBet = new javax.swing.JTextField();
         jButtonNewRound = new javax.swing.JButton();
@@ -88,24 +87,21 @@ public class GameInterface extends javax.swing.JFrame {
 
         computerBestHand.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         computerBestHand.setForeground(new java.awt.Color(255, 255, 255));
-        jLayeredPane1.add(computerBestHand, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 200, 30));
+        jLayeredPane1.add(computerBestHand, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 100, 30));
 
         playerBestHand.setFont(new java.awt.Font("SimSun", 2, 18)); // NOI18N
         playerBestHand.setForeground(new java.awt.Color(255, 255, 255));
-        jLayeredPane1.add(playerBestHand, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, 230, 30));
+        jLayeredPane1.add(playerBestHand, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 130, 30));
 
         jLabel19.setFont(new java.awt.Font("SimSun", 2, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setText("Player's best hannd");
+        jLabel19.setText("Player's best hannd:");
         jLayeredPane1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 190, 20));
 
         computerDecision.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         computerDecision.setForeground(new java.awt.Color(255, 255, 240));
         computerDecision.setText("Raise");
-        jLayeredPane1.add(computerDecision, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, 40));
-
-        jLabel15.setText("jLabel15");
-        jLayeredPane1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 420, -1, -1));
+        jLayeredPane1.add(computerDecision, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, -1, 40));
 
         jLabel20.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
@@ -114,11 +110,11 @@ public class GameInterface extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("SimSun", 2, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("Computer's2 Best Hand:");
-        jLayeredPane1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 150, 200, 20));
+        jLabel16.setText("Computer 2 Best Hand:");
+        jLayeredPane1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 200, 20));
 
         jLabelComputerCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/comp2Images/53.png"))); // NOI18N
-        jLayeredPane1.add(jLabelComputerCard4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 100, 70));
+        jLayeredPane1.add(jLabelComputerCard4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 100, 70));
 
         jButtonHelp.setBackground(new java.awt.Color(0, 0, 240));
         jButtonHelp.setForeground(new java.awt.Color(240, 240, 240));
@@ -131,15 +127,15 @@ public class GameInterface extends javax.swing.JFrame {
         jLayeredPane1.add(jButtonHelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, -1));
 
         jLabelPlayerCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/images/52.png"))); // NOI18N
-        jLayeredPane1.add(jLabelPlayerCard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, 70, 100));
+        jLayeredPane1.add(jLabelPlayerCard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 70, 100));
 
         jLabel17.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText(" Cards");
-        jLayeredPane1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 470, 80, -1));
+        jLayeredPane1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 470, 80, -1));
 
         jLabelComputerCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/comp2Images/53.png"))); // NOI18N
-        jLayeredPane1.add(jLabelComputerCard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 100, 70));
+        jLayeredPane1.add(jLabelComputerCard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 100, 70));
 
         difficultyLevel.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         difficultyLevel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Easy", "Mesium", "Hard" }));
@@ -148,18 +144,18 @@ public class GameInterface extends javax.swing.JFrame {
                 difficultyLevelActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(difficultyLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 40, 100, 30));
+        jLayeredPane1.add(difficultyLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 40, 150, 30));
 
         jLabelPlayerCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/images/52.png"))); // NOI18N
-        jLayeredPane1.add(jLabelPlayerCard2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 360, 70, 100));
+        jLayeredPane1.add(jLabelPlayerCard2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, 70, 100));
 
         jLabelComputerCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/images/53.png"))); // NOI18N
-        jLayeredPane1.add(jLabelComputerCard2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 70, 100));
+        jLayeredPane1.add(jLabelComputerCard2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 70, 100));
 
         computerDecision1.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         computerDecision1.setForeground(new java.awt.Color(255, 255, 240));
-        computerDecision1.setText("Dicision");
-        jLayeredPane1.add(computerDecision1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, 110, 40));
+        computerDecision1.setText("Decision");
+        jLayeredPane1.add(computerDecision1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 80, 40));
 
         jTextFieldComputerBet1.setEditable(false);
         jTextFieldComputerBet1.setText("0");
@@ -168,7 +164,7 @@ public class GameInterface extends javax.swing.JFrame {
                 jTextFieldComputerBet1ActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jTextFieldComputerBet1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 50, 30));
+        jLayeredPane1.add(jTextFieldComputerBet1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 50, 30));
 
         jButtonFold1.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         jButtonFold1.setText("Check");
@@ -177,15 +173,15 @@ public class GameInterface extends javax.swing.JFrame {
                 jButtonFold1ActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jButtonFold1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 320, -1, -1));
+        jLayeredPane1.add(jButtonFold1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, -1, -1));
 
         jLabelComputerCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/images/53.png"))); // NOI18N
-        jLayeredPane1.add(jLabelComputerCard3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 70, 100));
+        jLayeredPane1.add(jLabelComputerCard3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 70, 100));
 
         jLabel21.setFont(new java.awt.Font("SimSun", 2, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Computer's1 Best Hand:");
-        jLayeredPane1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 190, 20));
+        jLayeredPane1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 210, 20));
 
         jLabel6.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -194,15 +190,15 @@ public class GameInterface extends javax.swing.JFrame {
 
         jTextFieldDisplayWinner.setFont(new java.awt.Font("SimSun", 2, 18)); // NOI18N
         jTextFieldDisplayWinner.setForeground(new java.awt.Color(255, 255, 255));
-        jLayeredPane1.add(jTextFieldDisplayWinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 230, 30));
+        jLayeredPane1.add(jTextFieldDisplayWinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 100, 30));
 
         jLabelCommunityCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/images/52.png"))); // NOI18N
-        jLayeredPane1.add(jLabelCommunityCard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 70, 100));
+        jLayeredPane1.add(jLabelCommunityCard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 70, 100));
 
         computerDecision2.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         computerDecision2.setForeground(new java.awt.Color(255, 255, 240));
-        computerDecision2.setText("Dicision");
-        jLayeredPane1.add(computerDecision2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 110, 40));
+        computerDecision2.setText("Decision");
+        jLayeredPane1.add(computerDecision2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 90, 40));
 
         jTextFieldComputerBet3.setEditable(false);
         jTextFieldComputerBet3.setText("0");
@@ -211,7 +207,7 @@ public class GameInterface extends javax.swing.JFrame {
                 jTextFieldComputerBet3ActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jTextFieldComputerBet3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 50, 30));
+        jLayeredPane1.add(jTextFieldComputerBet3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 50, 30));
 
         jTextFieldComputerBet2.setEditable(false);
         jTextFieldComputerBet2.setText("0");
@@ -220,15 +216,15 @@ public class GameInterface extends javax.swing.JFrame {
                 jTextFieldComputerBet2ActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jTextFieldComputerBet2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, 50, 30));
+        jLayeredPane1.add(jTextFieldComputerBet2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, 50, 30));
 
         computerDecision3.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         computerDecision3.setForeground(new java.awt.Color(255, 255, 240));
         computerDecision3.setText("Raise");
-        jLayeredPane1.add(computerDecision3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, -1, 40));
+        jLayeredPane1.add(computerDecision3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, -1, 40));
 
         jLabelCommunityCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/images/52.png"))); // NOI18N
-        jLayeredPane1.add(jLabelCommunityCard2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 70, 100));
+        jLayeredPane1.add(jLabelCommunityCard2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 70, 100));
 
         jLabelPlayerName.setFont(new java.awt.Font("SimSun", 2, 18)); // NOI18N
         jLabelPlayerName.setForeground(new java.awt.Color(255, 255, 255));
@@ -236,13 +232,13 @@ public class GameInterface extends javax.swing.JFrame {
         jLayeredPane1.add(jLabelPlayerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 470, 150, 30));
 
         jLabelCommunityCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/images/52.png"))); // NOI18N
-        jLayeredPane1.add(jLabelCommunityCard3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 70, 100));
+        jLayeredPane1.add(jLabelCommunityCard3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, 70, 100));
 
         jLabelCommunityCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/images/52.png"))); // NOI18N
-        jLayeredPane1.add(jLabelCommunityCard4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 210, 70, 100));
+        jLayeredPane1.add(jLabelCommunityCard4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, 70, 100));
 
         jLabelCommunityCard5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/images/52.png"))); // NOI18N
-        jLayeredPane1.add(jLabelCommunityCard5, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, 70, 100));
+        jLayeredPane1.add(jLabelCommunityCard5, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 160, 70, 100));
 
         jButtonRaise.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         jButtonRaise.setText("Raise");
@@ -261,14 +257,7 @@ public class GameInterface extends javax.swing.JFrame {
                 jButtonFoldActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jButtonFold, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 320, 80, -1));
-
-        jTextFieldRaise.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldRaiseActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(jTextFieldRaise, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 60, 20));
+        jLayeredPane1.add(jButtonFold, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 320, 80, -1));
 
         jTextFieldPlayerBet.setEditable(false);
         jTextFieldPlayerBet.setText("0");
@@ -277,7 +266,7 @@ public class GameInterface extends javax.swing.JFrame {
                 jTextFieldPlayerBetActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jTextFieldPlayerBet, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 470, 50, 30));
+        jLayeredPane1.add(jTextFieldPlayerBet, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, 50, 30));
 
         jTextFieldComputerBet.setEditable(false);
         jTextFieldComputerBet.setText("0");
@@ -286,7 +275,7 @@ public class GameInterface extends javax.swing.JFrame {
                 jTextFieldComputerBetActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jTextFieldComputerBet, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 50, 30));
+        jLayeredPane1.add(jTextFieldComputerBet, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 50, 30));
 
         jButtonNewRound.setBackground(new java.awt.Color(20, 200, 100));
         jButtonNewRound.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
@@ -296,18 +285,19 @@ public class GameInterface extends javax.swing.JFrame {
                 jButtonNewRoundActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jButtonNewRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 430, 200, 50));
+        jLayeredPane1.add(jButtonNewRound, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 450, 200, 50));
 
         jButtonCall.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         jButtonCall.setText("Call");
-        jLayeredPane1.add(jButtonCall, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, 80, -1));
+        jLayeredPane1.add(jButtonCall, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 80, -1));
 
         jLabel14.setFont(new java.awt.Font("SimSun", 2, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Winner IS:");
-        jLayeredPane1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 90, 20));
+        jLabel14.setText("Winner:");
+        jLayeredPane1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 70, 20));
 
-        jTextFieldWinner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/background.jpg"))); // NOI18N
+        jTextFieldWinner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jTextFieldWinner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/gameInterfaceBackground.jpg"))); // NOI18N
         jLayeredPane1.add(jTextFieldWinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -20, 840, 530));
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
@@ -344,8 +334,8 @@ public class GameInterface extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFrame frame = new JFrame("Exit");
-        if(JOptionPane.showConfirmDialog(frame, "Confirem if you want Exit", "Exit", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)
+        JFrame frame = new JFrame("Exit Game");
+        if(JOptionPane.showConfirmDialog(frame, "Confirm if you want Exit", "Exit", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)
         {
             System.exit(0);
         }
@@ -366,10 +356,6 @@ public class GameInterface extends javax.swing.JFrame {
     private void jButtonFoldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFoldActionPerformed
     
     }//GEN-LAST:event_jButtonFoldActionPerformed
-
-    private void jTextFieldRaiseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRaiseActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldRaiseActionPerformed
 
     private void jButtonRaiseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRaiseActionPerformed
         // TODO add your handling code here:
@@ -464,7 +450,7 @@ public class GameInterface extends javax.swing.JFrame {
         jButtonCall.setEnabled(false);
         jButtonFold.setEnabled(false);
         
-        jTextFieldRaise.setEnabled(false);
+//        jTextFieldRaise.setEnabled(false);
     }
     
     public void enableBetButtons(){
@@ -472,12 +458,12 @@ public class GameInterface extends javax.swing.JFrame {
         jButtonCall.setEnabled(true);
         jButtonFold.setEnabled(true);
         
-        jTextFieldRaise.setEnabled(true);
+//        jTextFieldRaise.setEnabled(true);
     }
     
-    public int getPlayerBet(){
-        return Integer.parseInt(jTextFieldRaise.getText());
-    }
+//    public int getPlayerBet(){
+////        return Integer.parseInt(jTextFieldRaise.getText());
+//    }
     
     public void setPlayerBet(String bet){
         jTextFieldPlayerBet.setText(bet);
@@ -498,7 +484,8 @@ public class GameInterface extends javax.swing.JFrame {
     public String getDifficultyLevel(){
         return difficultyLevel.getSelectedItem().toString();
     }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel computerBestHand;
     private javax.swing.JLabel computerDecision;
@@ -515,7 +502,6 @@ public class GameInterface extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRaise;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -544,7 +530,6 @@ public class GameInterface extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldComputerBet3;
     private javax.swing.JLabel jTextFieldDisplayWinner;
     private javax.swing.JTextField jTextFieldPlayerBet;
-    private javax.swing.JTextField jTextFieldRaise;
     private javax.swing.JLabel jTextFieldWinner;
     private javax.swing.JLabel playerBestHand;
     // End of variables declaration//GEN-END:variables

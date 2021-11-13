@@ -8,19 +8,17 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-
 public class WelcomeInterface extends javax.swing.JFrame { 
 
     /**  
      * Creates new form MainPage
      */
-    
+
     public WelcomeInterface() {
         initComponents();
     }
     
     public String getName(){
-        
         return jTextField1.getText();
     }
     @SuppressWarnings("unchecked")
@@ -47,9 +45,11 @@ public class WelcomeInterface extends javax.swing.JFrame {
         jLayeredPane1.setVerifyInputWhenFocusTarget(false);
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Start the Game");
+        jButton1.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 14)); // NOI18N
+        jButton1.setText("Start Game");
         jButton1.setActionCommand("Start Game");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -66,13 +66,14 @@ public class WelcomeInterface extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 373, 180, 30));
+        jLayeredPane1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 160, 30));
 
-        jLabel2.setFont(new java.awt.Font("SimSun", 2, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 5, 255));
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Welcome to The Texas Holdem Poker Game ");
+        jLabel2.setToolTipText("");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 520, 30));
+        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 480, 600, 30));
 
         difficultyLevel.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         difficultyLevel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
@@ -81,24 +82,25 @@ public class WelcomeInterface extends javax.swing.JFrame {
                 difficultyLevelActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(difficultyLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, 110, 30));
+        jLayeredPane1.add(difficultyLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 10, 40, 30));
 
         jLabel3.setFont(new java.awt.Font("SimSun", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel3.setText("Number Of Players");
-        jLayeredPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 120, 30));
+        jLabel3.setText("Number Of Bots");
+        jLayeredPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 120, 30));
 
-        jButton3.setBackground(new java.awt.Color(0, 0, 240));
-        jButton3.setForeground(new java.awt.Color(240, 240, 240));
+        jButton3.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 14)); // NOI18N
         jButton3.setText("About Game");
         jButton3.setActionCommand("");
+        jButton3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton3.setDefaultCapable(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, -1));
+        jLayeredPane1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 160, 30));
 
         jTextField1.setText("Please Enter Your Name...");
         jTextField1.setToolTipText("");
@@ -112,20 +114,24 @@ public class WelcomeInterface extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 480, 20));
+        jLayeredPane1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, 160, 20));
 
-        jButton4.setBackground(new java.awt.Color(240, 0, 0));
+        jButton4.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 14)); // NOI18N
         jButton4.setText("Quit Game");
+        jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, -1, -1));
+        jLayeredPane1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, 160, 30));
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/background.jpg"))); // NOI18N
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel1.setMaximumSize(new java.awt.Dimension(840, 394));
+        jLabel1.setMinimumSize(new java.awt.Dimension(840, 394));
         jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 530));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -151,11 +157,11 @@ public class WelcomeInterface extends javax.swing.JFrame {
     public void addjButtonStartGame(ActionListener listener){
         jButton1.addActionListener(listener);
     }
-    
+
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
-        JFrame frame = new JFrame("Exit");
-        if(JOptionPane.showConfirmDialog(frame, "Confirem if you want Exit", "Exit", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)
+        JFrame frame = new JFrame("Exit Game");
+        if(JOptionPane.showConfirmDialog(frame, "Confirm if you want Exit", "Exit", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)
         {
             System.exit(0);
         }
@@ -167,11 +173,11 @@ public class WelcomeInterface extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null,"PoKer GaMe V1\nDevelped by Mustafa ADAM\nNguyen Bach\nme-adam@wiu.edu");
+        JOptionPane.showMessageDialog(null,"POKER GaMe V1\nDevelped by Mustafa ADAM\nNguyen Bach\nme-adam@wiu.edu");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
-jTextField1.setText("");                   // TODO add your handling code here:
+        jTextField1.setText("");                   // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
