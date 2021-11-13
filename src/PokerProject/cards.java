@@ -18,6 +18,8 @@ public class cards {
     private String suit;
     private String color;
 
+    
+    //Constructs for cards with color 
     public cards(int rank, String suit){
         this.rank = rank;
         this.suit = suit;
@@ -29,6 +31,7 @@ public class cards {
         }
     }
     
+    //Switch Cases for card ranks
     public String rankToString(){
         switch(this.rank){
             case 1: return "ACE";
@@ -48,20 +51,23 @@ public class cards {
         }
     }
     
+    //Get the card's ranks
     public int getRank(){
         return this.rank;
     }
     
+    //Get the Cards' Suits
     public String getSuit(){
         return this.suit;
     }
     
+    //Get color of the cards
     public String getColor(){
         return this.color;
     }
     
     
-    
+    //Shuffle deck Funtion
     public static void shuffle(int card[], int n)
     {
           
