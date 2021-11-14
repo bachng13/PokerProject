@@ -6,9 +6,8 @@
 package PokerProject;
 
 
+import java.util.Arrays;
 import java.util.Random;
-import java.util.ArrayList;
-import java.util.Scanner;
 /**
  *
  * @author User 1
@@ -66,6 +65,10 @@ public class cards {
         return this.color;
     }
     
+    @Override
+    public String toString(){
+        return rankToString() + " " + this.suit;
+    }
     
     //Shuffle deck Funtion
     public static void shuffle(int card[], int n)
@@ -86,49 +89,25 @@ public class cards {
         }
     }
     
-//    public String toString(){
-//        String[] ranks = {"Ace", "2", "3", "4", "5", "6",
-//               "7", "8", "9", "10", "Jack", "Queen", "King"};
-//        String[] suits = {"Clubs", "Diamonds", "Hearts", "Spades"};
-//        String s = ranks[this.rank] + " " + suits[this.suit];
-//    return s;
-//    }
     
     
        
     public static void main(String[] main){
-//        Random rand = new Random();
-//        String[] deck = new String[51];
-//        
-//        
-//    for(int i = 0; i < deck.length; i++){    
-//        for(int j = 0; j < 12; j++){
-//            for (int k = 0; k < 4; k++){
-//                    cards card = new cards(j,k);
-////                    System.out.println(card);
-//                    deck[i] = card.toString();
-//            }
-//        }    
-//    }
-//        
-//        
-//        
-//        // int ranks = rand.nextInt(13);
-//        // int suits = rand.nextInt(4);
-//        
-//        // int ranks1 = rand.nextInt(13);
-//        // int suits1 = rand.nextInt(4);
-//        
-//        // cards card1 = new cards(ranks, suits);
-//        // cards card2 = new cards(ranks1, suits1);
-//        
-//        
-//        // System.out.println(card1);
-//        // System.out.println(card2);
-//        for(int l = 0; l < deck.length; l++){
-//            System.out.println(deck[l]+ " ");
-//        }
-        
+    
+    //Test
+        cards card = new cards(1,"Clubs");
+        System.out.println(card);
+        int a[] = {0, 1, 2, 3, 4, 5, 6, 7, 8,
+                   9, 10, 11, 12, 13, 14, 15,
+                   16, 17, 18, 19, 20, 21, 22,
+                   23, 24, 25, 26, 27, 28, 29,
+                   30, 31, 32, 33, 34, 35, 36,
+                   37, 38, 39, 40, 41, 42, 43,
+                   44, 45, 46, 47, 48, 49, 50, 
+                   51};
+       
+        shuffle(a, 52);
+        System.out.println(Arrays.toString(a));
     }
     
     

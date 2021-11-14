@@ -5,20 +5,22 @@
  */
 package PokerProject;
 
+import java.util.Arrays;
+
 /**
  *
  * @author User 1
  */
 public class Player {
     private String playerName;
-    private int balance;
-    private cards[] holeCards = new cards[2];
+    private int score;
+    private cards[] playerCards = new cards[2];
     private boolean isInGame;
     
-    public Player(String name, int balance, cards[] holeCards){
+    public Player(String name, int balance, cards[] playerCards){
         this.playerName = name;
-        this.balance = balance;
-        this.holeCards = holeCards;
+        this.score = score;
+        this.playerCards = playerCards;
         this.isInGame = true;
     }
     
@@ -26,20 +28,20 @@ public class Player {
         return this.playerName;
     }
     
-    public int getBalance(){
-        return this.balance;
+    public int getScore(){
+        return this.score;
     }
     
-    public void addToBalance(int additionAmount){
-        this.balance += additionAmount;
+    public void addToScore(int additionAmount){
+        this.score += additionAmount;
     }
     
-    public void reduceFromBalance(int reduceAmount){
-        this.balance -= reduceAmount;
+    public void reduceFromScore(int reduceAmount){
+        this.score -= reduceAmount;
     }
     
-    public cards[] getHoleCards(){
-        return this.holeCards;
+    public cards[] getplayerCards(){
+        return this.playerCards;
     }
     
     public boolean getIsInGame(){
@@ -50,14 +52,30 @@ public class Player {
         this.isInGame = isInGame;
     }
     
+    public void resetCards(cards[] playerCards){
+        this.playerCards = playerCards;
+    }
+    
+    @Override
     public String toString(){
-        return("Player: " + this.playerName + " has a balance of " + this.balance
-                + ". Hole cards " + this.holeCards[0] + " " + this.holeCards[1] + ".\n In the game:" + this.isInGame);
+        return("Player: " + this.playerName + " has a score of " + this.score
+                + ". player cards " + Arrays.toString(this.playerCards) + ".\n In the game:" + this.isInGame);
     }
     
     public static void main(String[] args){
-        cards[] holeCards = {new cards(1,"Hearts"), new cards(2,"Hearts")};
-        Player player1 = new Player("Timmy", 140, holeCards);
+        
+        //test
+        cards[] playerCards = {new cards(1,"Hearts"), new cards(2,"Hearts")};
+        Player player1 = new Player("Steve", 150, playerCards);
+        
+        
+        System.out.println(player1.getName());
+        System.out.println(player1.getScore());
+        player1.addToScore(5);
+        System.out.println(player1.getScore());
+        System.out.println(Arrays.toString(player1.getplayerCards()));
+        System.out.println(player1.toString());
+        
     }
     
 }
