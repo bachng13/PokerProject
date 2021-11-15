@@ -16,6 +16,7 @@ public class gameLogic {
     private ArrayList<Player> playerList;
     private deck Deck;
     private cards[] theRiver;
+    private cards[] burnCards;
     private int smallBlind;
     private int bigBlind;
     private int pot;
@@ -23,6 +24,7 @@ public class gameLogic {
     private Player smallBlindPlayer; 
     private Player bigBlindPlayer;
     private int[] betTotal;
+    
     
     Scanner getInput = new Scanner(System.in);
     
@@ -35,8 +37,14 @@ public class gameLogic {
         this.smallBlind = smallBlind; //needed to start the game
         this.bigBlind = this.smallBlind * 2; // twice the amount of big blind
         this.dealer = dealer;
+        //setup Game
         setupGame();
-        roundBetting();
+        roundBetting(true);//first round bets
+        dealnextFlop();
+        roundBetting(false);//second round bets
+        dealnextFlop();
+        roundBetting(false);
+        dealnextFlop();
     }
     
     public void setupGame(){
@@ -60,43 +68,128 @@ public class gameLogic {
     }
     
     public void payOutBlinds(){
-        this.smallBlindPlayer.reduceFromBalance(this.smallBlind);
-        this.betTotal[this.playerList.indexOf(smallBlindPlayer)] = this.smallBlind;
-        this.bigBlindPlayer.reduceFromBalance(this.bigBlind);
-        this.betTotal[this.playerList.indexOf(bigBlindPlayer)] = this.bigBlind;
+        if(this.playerList.size() > 2){
+            this.smallBlindPlayer.reduceFromBalance(this.smallBlind);
+            this.betTotal[this.playerList.indexOf(smallBlindPlayer)] = this.smallBlind;
+            this.bigBlindPlayer.reduceFromBalance(this.bigBlind);
+            this.betTotal[this.playerList.indexOf(bigBlindPlayer)] = this.bigBlind;
+        }
     }
     
-    public void roundBetting(){
+    public void roundBetting(boolean preFlop){
         int playerIndex = this.playerList.indexOf(this.smallBlindPlayer);
-        int currentIndex = playerIndex;
-        for (int i = 0; i < this.playerList.size(); i++){
-            String callOrCheck = equalBets() ? "check" : "call"; //if all bets are the same ask user to do check or call
-            System.out.println("Player: " + this.playerList.get(currentIndex).getName() + 
-                    "\n Do you want to fold, " + callOrCheck + " or raise");
-            getInput.next();
-            System.out.println("2" + currentIndex);
-            currentIndex = currentIndex == this.playerList.size() - 1 ? 0 : currentIndex++;
-            System.out.println("3" + currentIndex);
+        if (preFlop){
+            playerIndex = this.playerList.indexOf(this.smallBlindPlayer) + 2;
         }
+        else {
+            playerIndex = this.playerList.indexOf(this.smallBlindPlayer);
+        }
+        int currentIndex = playerIndex;
+        
+        //ask all players to see if they wants to fold check or call
+        for (int i = 0; i < this.playerList.size(); i++){
+            currentIndex = betIndividual(currentIndex);
+        }
+        
+        while(!equalBets()){
+            currentIndex = betIndividual(currentIndex);
+        }        
+    }
+    
+    public void showRiver(){
+        System.out.println("*--------------------------------------------------------*");
+        if(this.theRiver[0] != null && this.theRiver[3] == null && this.theRiver[4] == null){
+            System.out.println("The Flop:");
+        }
+        else if(this.theRiver[0] != null && this.theRiver[3] != null && this.theRiver[4] == null){
+            System.out.println("The Turn:");        
+        }
+        else if(this.theRiver[0] != null && this.theRiver[3] != null && this.theRiver[4] != null){
+            System.out.println("The River:");
+        }
+    }
+    public void dealnextFlop(){
+        if (this.theRiver[0] == null){
+            this.theRiver[0] = this.Deck.nextCard();
+            this.theRiver[1] = this.Deck.nextCard();
+            this.theRiver[2] = this.Deck.nextCard();            
+        }
+        else if(this.theRiver[3] == null){
+            this.burnCards[0] = this.Deck.nextCard();
+            this.theRiver[3] = this.Deck.nextCard();            
+        }
+        else if(this.theRiver[4] == null){
+            this.burnCards[1] = this.Deck.nextCard();
+            this.theRiver[4] = this.Deck.nextCard();            
+        }
+                
+        showRiver();
+    }
+    
+    public int betIndividual(int currentIndex){
+        String callOrCheck = equalBets() ? "check" : "call"; //if all bets are the same ask user to do check or call
+        System.out.println("Player: " + this.playerList.get(currentIndex).toString() + 
+                           "\n Do you want to fold, " + callOrCheck + " or raise");
+        String playerResponse = getInput.next();
+        if(playerResponse.toLowerCase().contains("fold")){
+            foldFunction(this.playerList.get(currentIndex));
+        }
+        else if(playerResponse.toLowerCase().contains("call")){
+            callFunction(this.playerList.get(currentIndex));
+        }
+        else if(playerResponse.toLowerCase().contains("raise")){
+            raiseFunction(this.playerList.get(currentIndex));
+        }
+        currentIndex++;
+        if (currentIndex == this.playerList.size()){
+            currentIndex = 0; //if the index hits the size of the array then return it to zero
+        }
+        
+        currentIndex++;
+        if (currentIndex == this.playerList.size()){
+            currentIndex = 0; //if the index hits the size of the array then return it to zero
+        }
+        return currentIndex;
+    }
+    
+    public void foldFunction(Player player){
+        player.setIsInGame(false);
+    }
+    
+    public void callFunction(Player player){
+        int highestBet = betHighest();
+        int betDifference = highestBet - (this.betTotal[this.playerList.indexOf(player)]);
+        player.reduceFromBalance(betDifference);
+        this.betTotal[this.playerList.indexOf(player)] += betDifference;
+        
+    }
+    
+    public void raiseFunction(Player player){
+        System.out.println(player.getName() + ", How much raise?");
+        int raise = getInput.nextInt();
+        callFunction(player);
+        player.reduceFromBalance(raise);
+        this.betTotal[this.playerList.indexOf(player)] += raise;
     }
     
     public boolean equalBets(){
-        int highest = 0;
+        int highest = betHighest();
         for(int i=0; i < this.betTotal.length; i++){
             if(this.betTotal[i] > highest && this.playerList.get(i).getIsInGame()){
-                highest = this.betTotal[i];
-            }
-            
-        }
-        for(int i=0; i < this.betTotal.length; i++){
-            if(this.betTotal[i] < highest && this.playerList.get(i).getIsInGame()){
                 return false;
-            }
-            
+            }            
         }
-        
-        
         return true;
+    }    
+    
+    public int betHighest(){
+        int highestBets = 0;
+        for(int i=0; i < this.betTotal.length; i++){
+            if(this.betTotal[i] < highestBets && this.playerList.get(i).getIsInGame()){
+                highestBets = this.betTotal[i];
+            }            
+        }  
+        return highestBets;
     }
     
     public void addPlayer(){
