@@ -28,8 +28,6 @@ public class WelcomeInterface extends javax.swing.JFrame {
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        difficultyLevel = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
@@ -47,7 +45,6 @@ public class WelcomeInterface extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 14)); // NOI18N
         jButton1.setText("Start Game");
-        jButton1.setActionCommand("Start Game");
         jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -74,20 +71,6 @@ public class WelcomeInterface extends javax.swing.JFrame {
         jLabel2.setToolTipText("");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 480, 600, 30));
-
-        difficultyLevel.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
-        difficultyLevel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
-        difficultyLevel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                difficultyLevelActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(difficultyLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 10, 40, 30));
-
-        jLabel3.setFont(new java.awt.Font("SimSun", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel3.setText("Number Of Bots");
-        jLayeredPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 120, 30));
 
         jButton3.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 14)); // NOI18N
         jButton3.setText("About Game");
@@ -192,10 +175,6 @@ public class WelcomeInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MousePressed
 
-    private void difficultyLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_difficultyLevelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_difficultyLevelActionPerformed
-
     public String getPlayerName(){
         return jTextField1.getText();
     } 
@@ -203,13 +182,11 @@ public class WelcomeInterface extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> difficultyLevel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables

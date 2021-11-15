@@ -13,13 +13,13 @@ import java.util.Arrays;
  */
 public class Player {
     private String playerName;
-    private int score;
+    private int balance;
     private cards[] playerCards = new cards[2];
     private boolean isInGame;
     
     public Player(String name, int balance, cards[] playerCards){
         this.playerName = name;
-        this.score = score;
+        this.balance = balance;
         this.playerCards = playerCards;
         this.isInGame = true;
     }
@@ -28,16 +28,16 @@ public class Player {
         return this.playerName;
     }
     
-    public int getScore(){
-        return this.score;
+    public int getBalance(){
+        return this.balance;
     }
     
-    public void addToScore(int additionAmount){
-        this.score += additionAmount;
+    public void addToBalance(int additionAmount){
+        this.balance += additionAmount;
     }
     
-    public void reduceFromScore(int reduceAmount){
-        this.score -= reduceAmount;
+    public void reduceFromBalance(int reduceAmount){
+        this.balance -= reduceAmount;
     }
     
     public cards[] getplayerCards(){
@@ -58,7 +58,7 @@ public class Player {
     
     @Override
     public String toString(){
-        return("Player: " + this.playerName + " has a score of " + this.score
+        return("Player: " + this.playerName + " has a score of " + this.balance
                 + ". player cards " + Arrays.toString(this.playerCards) + ".\n In the game:" + this.isInGame);
     }
     
@@ -70,9 +70,9 @@ public class Player {
         
         
         System.out.println(player1.getName());
-        System.out.println(player1.getScore());
-        player1.addToScore(5);
-        System.out.println(player1.getScore());
+        System.out.println(player1.getBalance());
+        player1.addToBalance(5);
+        System.out.println(player1.getBalance());
         System.out.println(Arrays.toString(player1.getplayerCards()));
         System.out.println(player1.toString());
         

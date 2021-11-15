@@ -36,6 +36,7 @@ public class gameLogic {
         this.bigBlind = this.smallBlind * 2; // twice the amount of big blind
         this.dealer = dealer;
         setupGame();
+        roundBetting();
     }
     
     public void setupGame(){
@@ -59,9 +60,9 @@ public class gameLogic {
     }
     
     public void payOutBlinds(){
-        this.smallBlindPlayer.reduceFromScore(this.smallBlind);
+        this.smallBlindPlayer.reduceFromBalance(this.smallBlind);
         this.betTotal[this.playerList.indexOf(smallBlindPlayer)] = this.smallBlind;
-        this.bigBlindPlayer.reduceFromScore(this.bigBlind);
+        this.bigBlindPlayer.reduceFromBalance(this.bigBlind);
         this.betTotal[this.playerList.indexOf(bigBlindPlayer)] = this.bigBlind;
     }
     
@@ -70,7 +71,12 @@ public class gameLogic {
         int currentIndex = playerIndex;
         for (int i = 0; i < this.playerList.size(); i++){
             String callOrCheck = equalBets() ? "check" : "call"; //if all bets are the same ask user to do check or call
-            
+            System.out.println("Player: " + this.playerList.get(currentIndex).getName() + 
+                    "\n Do you want to fold, " + callOrCheck + " or raise");
+            getInput.next();
+            System.out.println("2" + currentIndex);
+            currentIndex = currentIndex == this.playerList.size() - 1 ? 0 : currentIndex++;
+            System.out.println("3" + currentIndex);
         }
     }
     
