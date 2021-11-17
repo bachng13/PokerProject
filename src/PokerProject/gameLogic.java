@@ -1,21 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package PokerProject;
 
 import java.util.*;
 import java.util.Scanner;
 /**
  *
- * @author User 1
+ * @author Mustafa Adam & Bach Nguyen
  */
 public class gameLogic {
     
     private ArrayList<Player> playerList;
     private deck Deck;
-    private cards[] theRiver;
+    private cards[] theCommunityCards;
     private cards[] burnCards;
     private int smallBlind;
     private int bigBlind;
@@ -32,7 +27,7 @@ public class gameLogic {
     public gameLogic(){
         this.playerList = new ArrayList<>();
         this.Deck = new deck();
-        this.theRiver = new cards[5];
+        this.theCommunityCards = new cards[5];
         this.pot = 0; 
         this.smallBlind = smallBlind; //needed to start the game
         this.bigBlind = this.smallBlind * 2; // twice the amount of big blind
@@ -44,7 +39,7 @@ public class gameLogic {
         dealnextFlop();
         roundBetting(false);//second round bets
         dealnextFlop();
-        roundBetting(false);
+        roundBetting(false);//third round bets
         dealnextFlop();
         winnerFunction();
     }
@@ -100,31 +95,31 @@ public class gameLogic {
     
     public void showRiver(){
         System.out.println("*--------------------------------------------------------*");
-        if(this.theRiver[0] != null && this.theRiver[3] == null && this.theRiver[4] == null){
+        if(this.theCommunityCards[0] != null && this.theCommunityCards[3] == null && this.theCommunityCards[4] == null){
             System.out.println("The Flop:");
         }
-        else if(this.theRiver[3] != null && this.theRiver[4] == null){
+        else if(this.theCommunityCards[3] != null && this.theCommunityCards[4] == null){
             System.out.println("The Turn:");        
         }
-        else if(this.theRiver[4] != null){
+        else if(this.theCommunityCards[4] != null){
             System.out.println("The River:");
         }
-        System.out.println(Arrays.toString(this.theRiver));
+        System.out.println(Arrays.toString(this.theCommunityCards));
     }
     
     public void dealnextFlop(){
-        if (this.theRiver[0] == null){
-            this.theRiver[0] = this.Deck.nextCard();
-            this.theRiver[1] = this.Deck.nextCard();
-            this.theRiver[2] = this.Deck.nextCard();            
+        if (this.theCommunityCards[0] == null){
+            this.theCommunityCards[0] = this.Deck.nextCard();
+            this.theCommunityCards[1] = this.Deck.nextCard();
+            this.theCommunityCards[2] = this.Deck.nextCard();            
         }
-        else if(this.theRiver[3] == null){
+        else if(this.theCommunityCards[3] == null){
 //            this.burnCards[0] = this.Deck.nextCard();
-            this.theRiver[3] = this.Deck.nextCard();            
+            this.theCommunityCards[3] = this.Deck.nextCard();            
         }
-        else if(this.theRiver[4] == null){
+        else if(this.theCommunityCards[4] == null){
 //            this.burnCards[1] = this.Deck.nextCard();
-            this.theRiver[4] = this.Deck.nextCard();            
+            this.theCommunityCards[4] = this.Deck.nextCard();            
         }
                 
         showRiver();
@@ -149,8 +144,8 @@ public class gameLogic {
     
     public ArrayList<cards> getAllCards(Player player){
         ArrayList<cards> allCards = new ArrayList<cards>();
-        for (int i = 0; i < this.theRiver.length; i++) {
-            allCards.add(this.theRiver[i]);
+        for (int i = 0; i < this.theCommunityCards.length; i++) {
+            allCards.add(this.theCommunityCards[i]);
         }
         allCards.add(player.getplayerCards()[0]);
         allCards.add(player.getplayerCards()[1]);
@@ -161,7 +156,7 @@ public class gameLogic {
     public gameLogic(ArrayList<Player> playerList, deck Deck, cards[] theRiver, cards[] burnCards, int smallBlind, int bigBlind, int pot, Player dealer, Player smallBlindPlayer, Player bigBlindPlayer, int[] betTotal) {
         this.playerList = playerList;
         this.Deck = Deck;
-        this.theRiver = theRiver;
+        this.theCommunityCards = theRiver;
         this.burnCards = burnCards;
         this.smallBlind = smallBlind;
         this.bigBlind = bigBlind;

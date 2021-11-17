@@ -64,12 +64,13 @@ public class GameInterface extends javax.swing.JFrame {
         jTextFieldComputerBet = new javax.swing.JTextField();
         jButtonNewRound = new javax.swing.JButton();
         jButtonCall = new javax.swing.JButton();
-        jLabel14 = new javax.swing.JLabel();
-        jTextFieldWinner = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         jLabel13 = new javax.swing.JLabel();
+        jTextFieldWinner = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -291,31 +292,31 @@ public class GameInterface extends javax.swing.JFrame {
         jButtonCall.setText("Call");
         jLayeredPane1.add(jButtonCall, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 80, -1));
 
+        jLabel13.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Pot");
+        jLayeredPane1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, -1, -1));
+
+        jTextFieldWinner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jTextFieldWinner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/gameInterfaceBackground.jpg"))); // NOI18N
+        jLayeredPane1.add(jTextFieldWinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 830, 540));
+
         jLabel14.setFont(new java.awt.Font("SimSun", 2, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Winner:");
         jLayeredPane1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 70, 20));
 
-        jTextFieldWinner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jTextFieldWinner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/gameInterfaceBackground.jpg"))); // NOI18N
-        jLayeredPane1.add(jTextFieldWinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -20, 840, 530));
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "EASY", "MEDIUM", "HARD" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
-
-        jLayeredPane1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 60, 110, 60));
-
-        jLabel13.setText("jLabel13");
-        jLayeredPane1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 350, -1, -1));
-
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText(" Cards");
         jLayeredPane1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 460, 50, -1));
+
+        jScrollPane2.setViewportView(jTextPane1);
+
+        jLayeredPane1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 270, 80, -1));
+
+        jTextField1.setText("jTextField1");
+        jLayeredPane1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -366,10 +367,6 @@ public class GameInterface extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Poker v1:\n\nEvery Player has two cards face downThroughout several betting rounds, five more cards are (eventually) dealt face up\n in the the table called community cards. Each player is free to use these community cards in combination  \nwith their cards to build a five-card poker hand.   \nCall: match the amount of the big blind \nRaise: increase the bet within the specific limits  of the game\n Check: To see the next card without raise the betting\n Fold: throw the hand away\n\n  Your mission is to construct your five-card poker hands using the best available five cards out of the seven total cards\n\"player two cards, and the community cards\". You can do that by using both your cards in combination with three community cards,\nYou have all the option of building five cards of these toal seven cards.  If there is only one player left because all other player fold\nhe/she will wine the game without having to show any cards. If two or more player left till the fivecomunity cards revealed the winer will \nbe whoever has the best hand and that go as following starting from least  hand.\n\n1. Royal flush\n2. Straight flush\n3. Four of a kind\n4. Full house\n5. Flush\n6. Straight\n7. Three of a kind\n8. Two pair\n9. Pair\n10. High Card");
     }//GEN-LAST:event_jButtonHelpActionPerformed
 
-    private void difficultyLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_difficultyLevelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_difficultyLevelActionPerformed
-
     private void jTextFieldComputerBet1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldComputerBet1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldComputerBet1ActionPerformed
@@ -385,6 +382,10 @@ public class GameInterface extends javax.swing.JFrame {
     private void jTextFieldComputerBet3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldComputerBet3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldComputerBet3ActionPerformed
+
+    private void difficultyLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_difficultyLevelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_difficultyLevelActionPerformed
 
     public void setPlayerCard1(int cardNmuber){
         jLabelPlayerCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texasholdempoker/images/"+String.valueOf(cardNmuber)+".png")));
@@ -522,8 +523,8 @@ public class GameInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelPlayerCard2;
     public javax.swing.JLabel jLabelPlayerName;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldComputerBet;
     private javax.swing.JTextField jTextFieldComputerBet1;
     private javax.swing.JTextField jTextFieldComputerBet2;
@@ -531,6 +532,7 @@ public class GameInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jTextFieldDisplayWinner;
     private javax.swing.JTextField jTextFieldPlayerBet;
     private javax.swing.JLabel jTextFieldWinner;
+    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel playerBestHand;
     // End of variables declaration//GEN-END:variables
 }

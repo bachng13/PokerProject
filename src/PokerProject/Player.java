@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package PokerProject;
 
 import java.util.Arrays;
 
 /**
  *
- * @author User 1
+ * @author Mustafa Adam & Bach Nguyen
  */
 public class Player {
     private String playerName;
