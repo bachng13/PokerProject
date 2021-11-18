@@ -6,8 +6,11 @@ package PokerProject;
 
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+
 
 public class GameInterface extends javax.swing.JFrame {
     int[] readyDeck = new int[51]; 
@@ -17,8 +20,16 @@ public class GameInterface extends javax.swing.JFrame {
     int[] PlayerCardsFinal = new int[5];
     int[] computerCardsCardsFinal = new int[5];
     
+    cards[] playersCards = new cards[2];
+    
+        
+    imagesHandler im;
+    
+    
     public GameInterface() {
         initComponents();
+        im = new imagesHandler();
+        this.add(im);
     }
     
     @SuppressWarnings("unchecked")
@@ -78,7 +89,7 @@ public class GameInterface extends javax.swing.JFrame {
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(240, 0, 0));
-        jButton1.setText("Quit Gmae");
+        jButton1.setText("Quit Game");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -96,7 +107,7 @@ public class GameInterface extends javax.swing.JFrame {
 
         jLabel19.setFont(new java.awt.Font("SimSun", 2, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setText("Player's best hannd:");
+        jLabel19.setText("Player's best hand:");
         jLayeredPane1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 190, 20));
 
         computerDecision.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
@@ -111,7 +122,7 @@ public class GameInterface extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("SimSun", 2, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("Computer 2 Best Hand:");
+        jLabel16.setText("Peter's Best Hand:");
         jLayeredPane1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 200, 20));
 
         jLabelComputerCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/comp2Images/53.png"))); // NOI18N
@@ -165,7 +176,7 @@ public class GameInterface extends javax.swing.JFrame {
                 jTextFieldComputerBet1ActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jTextFieldComputerBet1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 50, 30));
+        jLayeredPane1.add(jTextFieldComputerBet1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 50, 30));
 
         jButtonFold1.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         jButtonFold1.setText("Check");
@@ -181,12 +192,12 @@ public class GameInterface extends javax.swing.JFrame {
 
         jLabel21.setFont(new java.awt.Font("SimSun", 2, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel21.setText("Computer's1 Best Hand:");
+        jLabel21.setText("Polly's Best Hand:");
         jLayeredPane1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 210, 20));
 
         jLabel6.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Computer 1 Cards");
+        jLabel6.setText("Polly's Cards");
         jLayeredPane1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 160, -1));
 
         jTextFieldDisplayWinner.setFont(new java.awt.Font("SimSun", 2, 18)); // NOI18N
@@ -208,7 +219,7 @@ public class GameInterface extends javax.swing.JFrame {
                 jTextFieldComputerBet3ActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jTextFieldComputerBet3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 50, 30));
+        jLayeredPane1.add(jTextFieldComputerBet3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 50, 30));
 
         jTextFieldComputerBet2.setEditable(false);
         jTextFieldComputerBet2.setText("0");
@@ -351,7 +362,8 @@ public class GameInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldComputerBetActionPerformed
 
     private void jButtonNewRoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewRoundActionPerformed
-
+        jLabelPlayerCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/10Clubs.png")));
+        jLabelPlayerCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/AceSpades.png")));
     }//GEN-LAST:event_jButtonNewRoundActionPerformed
 
     private void jButtonFoldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFoldActionPerformed

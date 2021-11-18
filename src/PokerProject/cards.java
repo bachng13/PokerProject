@@ -28,19 +28,19 @@ public class cards {
     //Switch Cases for card ranks
     public String rankToString(){
         switch(this.rank){
-            case 1: return "ACE";
-            case 2: return "TWO";
-            case 3: return "THREE";
-            case 4: return "FOUR";
-            case 5: return "FIVE";
-            case 6: return "SIX";
-            case 7: return "SEVEN";
-            case 8: return "EIGHT";
-            case 9: return "NINE";
-            case 10: return "TEN";
-            case 11: return "JACK";
-            case 12: return "QUEEN";
-            case 13: return "KING";
+            case 1: return "Ace";
+            case 2: return "2";
+            case 3: return "3";
+            case 4: return "4";
+            case 5: return "5";
+            case 6: return "6";
+            case 7: return "7";
+            case 8: return "8";
+            case 9: return "9";
+            case 10: return "10";
+            case 11: return "Jack";
+            case 12: return "Queen";
+            case 13: return "King";
             default: return "Error value";
         }
     }
@@ -62,9 +62,8 @@ public class cards {
     
     @Override
     public String toString(){
-        return rankToString() + " " + this.suit;
+        return rankToString() + this.suit;
     }
-    
     
     
            
