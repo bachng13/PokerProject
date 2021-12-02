@@ -52,16 +52,4 @@ public class deck {
     public int cardsRemaining(){
         return this.deck.size();
     }    
-    
-    public static void main(String[] args){
-        
-        //test
-        deck newDeck = new deck();
-        System.out.println(newDeck.deck.toString());
-        System.out.println(newDeck.nextCard());
-        System.out.println(newDeck.nextCard());
-        System.out.println(newDeck.nextCard());
-        System.out.println(newDeck.nextCard());
-        System.out.println(newDeck.cardsRemaining());
-    }
 }

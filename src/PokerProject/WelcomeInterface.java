@@ -97,7 +97,7 @@ public class WelcomeInterface extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, 160, 20));
+        jLayeredPane1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 160, 30));
 
         jButton4.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 14)); // NOI18N
         jButton4.setText("Quit Game");

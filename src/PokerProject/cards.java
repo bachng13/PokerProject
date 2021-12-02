@@ -43,6 +43,8 @@ public class cards {
             case 13: return "King";
             default: return "Error value";
         }
+//        return String.valueOf(this.rank);
+        
     }
     
     //Get the card's ranks
@@ -70,7 +72,8 @@ public class cards {
     public static void main(String[] main){
     
     //Test
-        
+        cards newCard = new cards(14, "Hearts");
+        System.out.println(newCard);
     }
     
     
