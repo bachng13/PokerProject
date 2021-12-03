@@ -43,43 +43,41 @@ public class GameInterface extends javax.swing.JFrame {
         this.bigBlind = this.smallBlind * 2; // twice the amount of big blind
         this.dealer = dealer;
 //        setupGame();
-        Deck.shuffle();        
+        Deck.shuffle();
         cards[] playerCards = {Deck.nextCard(), Deck.nextCard()};
         cards[] bot1Cards = {Deck.nextCard(), Deck.nextCard()};
         cards[] bot2Cards = {Deck.nextCard(), Deck.nextCard()};
         Player player1 = new Player(PlayerName.getText(), balanceInitial, playerCards);
         Player bot1 = new Player("Peter", balanceInitial, bot1Cards);
         Player bot2 = new Player("Polly", balanceInitial, bot2Cards);
-        
+
         //add each player in ArrayList to easier manage
         playerList.add(player1);
         playerList.add(bot1);
         playerList.add(bot2);
-        
-        
-        
-        setupGame();
-        pot = smallBlind + bigBlind * 2;
-        player1.reduceFromBalance(bigBlind);
-        bot1.reduceFromBalance(bigBlind);
-        bot2.reduceFromBalance(bigBlind);
-        
-        jTextField1.setText(String.valueOf(pot));
+
         //First round betting
-        
-        roundBetting(true);
-        
-        jButtonNewRound.addActionListener((ActionEvent ae) -> {            
+//        roundBetting(true);
+
+        jButtonNewRound.addActionListener((ActionEvent ae) -> {
             playerBalance.setText(String.valueOf(playerList.get(0).getBalance()));
             bot1Balance.setText(String.valueOf(playerList.get(1).getBalance()));
             bot2Balance.setText(String.valueOf(playerList.get(2).getBalance()));
             jLabelPlayerCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(playerList.get(0).getplayerCards()[0]) + ".png")));
             jLabelPlayerCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(playerList.get(0).getplayerCards()[1]) + ".png")));
 //                roundBetting(true);
-            
+            dealnextFlop();
+            pot = 150;
+            setupGame();
+
+            player1.reduceFromBalance(50);
+            bot1.reduceFromBalance(50);
+            bot2.reduceFromBalance(50);
+
+            jTextField1.setText(String.valueOf(pot));
 
             if (theCommunityCards[4] != null) {
-                
+
                 for (int i = 0; i < 5; i++) {
                     theCommunityCards[i] = null;
                 }
@@ -96,21 +94,33 @@ public class GameInterface extends javax.swing.JFrame {
                 jLabelComputerCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/comp2Images/52.png")));
                 Deck.reset();
                 Deck.shuffle();
-                
+                playerList.get(0).getplayerCards()[0] = Deck.nextCard();
+                playerList.get(0).getplayerCards()[1] = Deck.nextCard();
+                playerList.get(1).getplayerCards()[0] = Deck.nextCard();
+                playerList.get(1).getplayerCards()[1] = Deck.nextCard();
+                playerList.get(2).getplayerCards()[0] = Deck.nextCard();
+                playerList.get(2).getplayerCards()[1] = Deck.nextCard();
+                player1.reduceFromBalance(50);
+                bot1.reduceFromBalance(50);
+                bot2.reduceFromBalance(50);
+                pot = 150;
+                jTextField1.setText(String.valueOf(pot));
             }
         });
 
         jButtonRaise.addActionListener((ActionEvent ae) -> {
             raiseFunction(playerList.get(0));
+            raiseFunction(playerList.get(1));
+            raiseFunction(playerList.get(2));
             jTextField1.setText(String.valueOf(pot + Integer.parseInt(jTextFieldPlayerBet.getText())));
             jTextFieldPlayerBet.setText("0");
         });
-        
+
         jButtonCall.addActionListener((ActionEvent ae) -> {
-            callFunction(player1);            
+            callFunction(player1);
         });
-        
-        jButtonFold.addActionListener((ActionEvent ae) -> { 
+
+        jButtonFold.addActionListener((ActionEvent ae) -> {
             foldFunction(playerList.get(0));
             whoWon();
             jLabelComputerCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(playerList.get(1).getplayerCards()[0]) + ".png")));
@@ -118,10 +128,11 @@ public class GameInterface extends javax.swing.JFrame {
             jLabelComputerCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(playerList.get(2).getplayerCards()[0]) + ".png")));
             jLabelComputerCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(playerList.get(2).getplayerCards()[1]) + ".png")));
             Deck.reset();
+            Deck.shuffle();
         });
-        
+
         jButtonCheck.addActionListener((ActionEvent ae) -> {
-            dealnextFlop();
+//            dealnextFlop();
             jLabelCommunityCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(theCommunityCards[0]) + ".png")));
             jLabelCommunityCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(theCommunityCards[1]) + ".png")));
             jLabelCommunityCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(theCommunityCards[2]) + ".png")));
@@ -133,16 +144,12 @@ public class GameInterface extends javax.swing.JFrame {
                 dealnextFlop();
                 jLabelCommunityCard5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(theCommunityCards[4]) + ".png")));
             }
-            if (theCommunityCards[4]!=null){
+            if (theCommunityCards[4] != null) {
                 whoWon();
                 jTextFieldDisplayWinner.setText(player1.getName());
-                
             }
         });
-        
-        
-        
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -515,7 +522,7 @@ public class GameInterface extends javax.swing.JFrame {
 
 
     private void jButtonFoldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFoldActionPerformed
-        
+
 
     }//GEN-LAST:event_jButtonFoldActionPerformed
 
@@ -536,7 +543,7 @@ public class GameInterface extends javax.swing.JFrame {
 
     private void jButtonCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jButtonCheckActionPerformed
 
     private void jTextFieldComputerBet2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldComputerBet2ActionPerformed
@@ -592,7 +599,7 @@ public class GameInterface extends javax.swing.JFrame {
             this.bigBlindPlayer = playerList.get(2);
         }
         this.betTotal = new int[playerList.size()];
-        
+
     }
 
     public void roundBetting(boolean preFlop) {
@@ -647,7 +654,7 @@ public class GameInterface extends javax.swing.JFrame {
         player.reduceFromBalance(betDifference);
         this.betTotal[this.playerList.indexOf(player)] += betDifference;
     }
-   
+
     public void payOutWinner(ArrayList<Player> winner) {
         int tempWinner = this.pot / winner.size();
         for (int i = 0; i < winner.size(); i++) {
