@@ -41,7 +41,6 @@ public class cards {
             case 11: return "Jack";
             case 12: return "Queen";
             case 13: return "King";
-            case 14: return "Jack";
             default: return "Error value";
         }
         

@@ -18,19 +18,19 @@ public class deck {
         
         //add in all cards based on suits
         
-        for(int i = 2; i < 15; i++){
+        for(int i = 2; i < 14; i++){
             deck.add(new cards(i,"Hearts"));
         }
         
-        for(int i = 2; i < 15; i++){
+        for(int i = 2; i < 14; i++){
             deck.add(new cards(i,"Diamonds"));
         }
         
-        for(int i = 2; i < 15; i++){
+        for(int i = 2; i < 14; i++){
             deck.add(new cards(i,"Clubs"));
         }
         
-        for(int i = 2; i < 15; i++){
+        for(int i = 2; i < 14; i++){
             deck.add(new cards(i,"Spades"));
         }
         
