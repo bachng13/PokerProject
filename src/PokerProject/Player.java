@@ -53,8 +53,7 @@ public class Player {
     
     @Override
     public String toString(){
-        return("Player: " + this.playerName + " has a score of " + this.balance
-                + ". player cards " + Arrays.toString(this.playerCards) + ".\n In the game:" + this.isInGame);
+        return(this.playerName);
     }
     
     public static void main(String[] args){

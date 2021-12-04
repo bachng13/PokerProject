@@ -75,9 +75,9 @@ public class FrameHandeler {
         this.gamePage.setVisible(true);        
         if(this.startPage.getName().equals("Please Enter Your Name..."))
             
-            this.gamePage.PlayerName.setText("Guest");
+            this.gamePage.player1Name.setText("Guest");
         else{
-            this.gamePage.PlayerName.setText(this.startPage.getName());
+            this.gamePage.player1Name.setText(this.startPage.getName());
         }
         this.startPage.dispose();
     }

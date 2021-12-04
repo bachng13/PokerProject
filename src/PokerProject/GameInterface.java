@@ -48,10 +48,10 @@ public class GameInterface extends javax.swing.JFrame {
         cards[] playerCards = {Deck.nextCard(), Deck.nextCard()};
         cards[] bot1Cards = {Deck.nextCard(), Deck.nextCard()};
         cards[] bot2Cards = {Deck.nextCard(), Deck.nextCard()};
-        Player player1 = new Player(PlayerName.getText(), balanceInitial, playerCards);
+        Player player1 = new Player(player1Name.getText(), balanceInitial, playerCards);
         Player bot1 = new Player("Peter", balanceInitial, bot1Cards);
         Player bot2 = new Player("Polly", balanceInitial, bot2Cards);
-        
+
         //add each player in ArrayList to easier manage
         playerList.add(player1);
         playerList.add(bot1);
@@ -60,29 +60,37 @@ public class GameInterface extends javax.swing.JFrame {
         //First round betting
 //        roundBetting(true);
         this.turnCounter = 0;
-        
-        
+
         jButtonNewRound.addActionListener((ActionEvent ae) -> {
-            turnCounter += 1;
-            enableAllButtons();
-            playerBalance.setText(String.valueOf(playerList.get(0).getBalance()));
-            bot1Balance.setText(String.valueOf(playerList.get(1).getBalance()));
-            bot2Balance.setText(String.valueOf(playerList.get(2).getBalance()));
-            jLabelPlayerCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(playerList.get(0).getplayerCards()[0]) + ".png")));
-            jLabelPlayerCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(playerList.get(0).getplayerCards()[1]) + ".png")));
-//                roundBetting(true);
-            dealnextFlop();
-            pot = 150;
             setupGame();
-            
+            turnCounter += 1;
+            System.out.println(turnCounter);
+            enableAllButtons();
+            //          roundBetting(true);
+            if (turnCounter == 1) {
+                dealnextFlop();
+                pot = 150;
+            }
+
             player1.reduceFromBalance(50);
             bot1.reduceFromBalance(50);
             bot2.reduceFromBalance(50);
+            playerBalance.setText(String.valueOf(playerList.get(0).getBalance()));
+            bot1Balance.setText(String.valueOf(playerList.get(1).getBalance()));
+            bot2Balance.setText(String.valueOf(playerList.get(2).getBalance()));
+            potBalance.setText(String.valueOf(pot));
+            playerList.get(0).getplayerCards()[0] = Deck.nextCard();
+            playerList.get(0).getplayerCards()[1] = Deck.nextCard();
+            playerList.get(1).getplayerCards()[0] = Deck.nextCard();
+            playerList.get(1).getplayerCards()[1] = Deck.nextCard();
+            playerList.get(2).getplayerCards()[0] = Deck.nextCard();
+            playerList.get(2).getplayerCards()[1] = Deck.nextCard();
 
-            jTextField1.setText(String.valueOf(pot));
-              
-            if (theCommunityCards[4] != null) {
+            jLabelPlayerCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(playerList.get(0).getplayerCards()[0]) + ".png")));
+            jLabelPlayerCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(playerList.get(0).getplayerCards()[1]) + ".png")));
 
+            if (turnCounter >=6) {
+                    
                 for (int i = 0; i < 5; i++) {
                     theCommunityCards[i] = null;
                 }
@@ -105,40 +113,39 @@ public class GameInterface extends javax.swing.JFrame {
                 playerList.get(1).getplayerCards()[1] = Deck.nextCard();
                 playerList.get(2).getplayerCards()[0] = Deck.nextCard();
                 playerList.get(2).getplayerCards()[1] = Deck.nextCard();
-//                player1.reduceFromBalance(50);
-//                bot1.reduceFromBalance(50);
-//                bot2.reduceFromBalance(50);
+                jLabelPlayerCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(playerList.get(0).getplayerCards()[0]) + ".png")));
+                jLabelPlayerCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(playerList.get(0).getplayerCards()[1]) + ".png")));
                 pot = 150;
-                jTextField1.setText(String.valueOf(pot));
-                if(player1.getBalance() < 0){
-                    player1.setIsInGame(false);                    
-                }
-                else if(bot1.getBalance() < 0){
-                    bot1.setIsInGame(false);                    
-                }
-                else if(bot2.getBalance() < 0){
+                potBalance.setText(String.valueOf(pot));
+                if (player1.getBalance() < 0) {
+                    player1.setIsInGame(false);
+                } else if (bot1.getBalance() < 0) {
+                    bot1.setIsInGame(false);
+                } else if (bot2.getBalance() < 0) {
                     bot2.setIsInGame(false);
                 }
+                turnCounter = 0;
+                winnerLabel.setText(" ");
+                playerBestHand.setText(" ");
             }
         });
 
         jButtonRaise.addActionListener((ActionEvent ae) -> {
+            this.pot = Integer.parseInt(potBalance.getText());
             raiseFunction(player1);
             callFunction(bot1);
             callFunction(bot2);
-            jTextField1.setText(String.valueOf(pot + Integer.parseInt(jTextFieldPlayerBet.getText())));
+            potBalance.setText(String.valueOf(pot + Integer.parseInt(jTextFieldPlayerBet.getText())));
             jTextFieldPlayerBet.setText("0");
         });
 
         jButtonCall.addActionListener((ActionEvent ae) -> {
             callFunction(player1);
-            
-            
+
         });
 
         jButtonFold.addActionListener((ActionEvent ae) -> {
             foldFunction(playerList.get(0));
-            setDisplayWinner(PlayerName.getText());
             whoWon();
             jLabelComputerCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(playerList.get(1).getplayerCards()[0]) + ".png")));
             jLabelComputerCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(playerList.get(1).getplayerCards()[1]) + ".png")));
@@ -149,22 +156,29 @@ public class GameInterface extends javax.swing.JFrame {
         });
 
         jButtonCheck.addActionListener((ActionEvent ae) -> {
-//            dealnextFlop();
+            this.pot = Integer.parseInt(potBalance.getText());
             jLabelCommunityCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(theCommunityCards[0]) + ".png")));
             jLabelCommunityCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(theCommunityCards[1]) + ".png")));
             jLabelCommunityCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(theCommunityCards[2]) + ".png")));
-            if (theCommunityCards[3] == null && theCommunityCards[4] == null) {
+            turnCounter += 1;
+            if (turnCounter == 3) {
                 dealnextFlop();
                 jLabelCommunityCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(theCommunityCards[3]) + ".png")));
             }
-            if (theCommunityCards[4] == null) {
+            if (turnCounter == 4) {
                 dealnextFlop();
                 jLabelCommunityCard5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(theCommunityCards[4]) + ".png")));
-            }
-            if (theCommunityCards[4] != null) {
                 whoWon();
-                winnerLabel.setText(player1.getName());
+//                winnerLabel.setText(PlayerName.getText());
+
             }
+            if (turnCounter == 5) {
+                jLabelComputerCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(playerList.get(1).getplayerCards()[0]) + ".png")));
+                jLabelComputerCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(playerList.get(1).getplayerCards()[1]) + ".png")));
+                jLabelComputerCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(playerList.get(2).getplayerCards()[0]) + ".png")));
+                jLabelComputerCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(playerList.get(2).getplayerCards()[1]) + ".png")));
+            }
+
         });
 
     }
@@ -208,10 +222,10 @@ public class GameInterface extends javax.swing.JFrame {
         jButtonCall = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        potBalance = new javax.swing.JTextField();
         playerBalance = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        PlayerName = new javax.swing.JLabel();
+        player1Name = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         winnerLabel = new javax.swing.JLabel();
@@ -238,22 +252,22 @@ public class GameInterface extends javax.swing.JFrame {
         computerBestHand.setForeground(new java.awt.Color(255, 255, 255));
         jLayeredPane1.add(computerBestHand, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 100, 30));
 
-        playerBestHand.setFont(new java.awt.Font("SimSun", 2, 18)); // NOI18N
+        playerBestHand.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         playerBestHand.setForeground(new java.awt.Color(255, 255, 255));
-        jLayeredPane1.add(playerBestHand, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 460, 130, 30));
+        jLayeredPane1.add(playerBestHand, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 470, 200, 30));
 
         jLabel19.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setText("Player's best hand:");
+        jLabel19.setText("Current best hand:");
         jLayeredPane1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 190, 20));
 
         computerDecision.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         computerDecision.setForeground(new java.awt.Color(255, 255, 240));
         computerDecision.setText("Raise Amount");
-        jLayeredPane1.add(computerDecision, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, -1, 30));
+        jLayeredPane1.add(computerDecision, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, -1, 30));
 
         jLabelComputerCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/comp2Images/52.png"))); // NOI18N
-        jLayeredPane1.add(jLabelComputerCard4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 70, 100));
+        jLayeredPane1.add(jLabelComputerCard4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, 70, 100));
 
         jButtonHelp.setBackground(new java.awt.Color(255, 153, 0));
         jButtonHelp.setForeground(new java.awt.Color(240, 240, 240));
@@ -266,21 +280,21 @@ public class GameInterface extends javax.swing.JFrame {
         jLayeredPane1.add(jButtonHelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, -1));
 
         jLabelPlayerCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/comp2Images/52.png"))); // NOI18N
-        jLayeredPane1.add(jLabelPlayerCard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 70, 100));
+        jLayeredPane1.add(jLabelPlayerCard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 70, 100));
 
         jLabelComputerCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/comp2Images/52.png"))); // NOI18N
-        jLayeredPane1.add(jLabelComputerCard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 70, 100));
+        jLayeredPane1.add(jLabelComputerCard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 70, 100));
 
         jLabelPlayerCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/comp2Images/52.png"))); // NOI18N
-        jLayeredPane1.add(jLabelPlayerCard2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, 70, 100));
+        jLayeredPane1.add(jLabelPlayerCard2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, 70, 100));
 
         jLabelComputerCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/comp2Images/52.png"))); // NOI18N
-        jLayeredPane1.add(jLabelComputerCard2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 70, 100));
+        jLayeredPane1.add(jLabelComputerCard2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 70, 100));
 
         computerDecision1.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         computerDecision1.setForeground(new java.awt.Color(255, 255, 240));
         computerDecision1.setText("Decision");
-        jLayeredPane1.add(computerDecision1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 80, 30));
+        jLayeredPane1.add(computerDecision1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 80, 30));
 
         jTextFieldComputerBet1.setEditable(false);
         jTextFieldComputerBet1.setText("0");
@@ -298,18 +312,18 @@ public class GameInterface extends javax.swing.JFrame {
                 jButtonCheckActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jButtonCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, -1, -1));
+        jLayeredPane1.add(jButtonCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, -1, -1));
 
         jLabelComputerCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/52.png"))); // NOI18N
-        jLayeredPane1.add(jLabelComputerCard3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 70, 100));
+        jLayeredPane1.add(jLabelComputerCard3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 70, 100));
 
         jLabel6.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Polly's Balance");
-        jLayeredPane1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 160, -1));
+        jLayeredPane1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 160, -1));
 
         jLabelCommunityCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/images/52.png"))); // NOI18N
-        jLayeredPane1.add(jLabelCommunityCard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 70, 100));
+        jLayeredPane1.add(jLabelCommunityCard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 70, 100));
 
         computerDecision2.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         computerDecision2.setForeground(new java.awt.Color(255, 255, 240));
@@ -332,7 +346,7 @@ public class GameInterface extends javax.swing.JFrame {
                 jTextFieldComputerBet2ActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jTextFieldComputerBet2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 50, 30));
+        jLayeredPane1.add(jTextFieldComputerBet2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 50, 30));
 
         computerDecision3.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         computerDecision3.setForeground(new java.awt.Color(255, 255, 240));
@@ -340,16 +354,16 @@ public class GameInterface extends javax.swing.JFrame {
         jLayeredPane1.add(computerDecision3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, 30));
 
         jLabelCommunityCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/images/52.png"))); // NOI18N
-        jLayeredPane1.add(jLabelCommunityCard2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 70, 100));
+        jLayeredPane1.add(jLabelCommunityCard2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, 70, 100));
 
         jLabelCommunityCard3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/images/52.png"))); // NOI18N
-        jLayeredPane1.add(jLabelCommunityCard3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, 70, 100));
+        jLayeredPane1.add(jLabelCommunityCard3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 70, 100));
 
         jLabelCommunityCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/images/52.png"))); // NOI18N
-        jLayeredPane1.add(jLabelCommunityCard4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, 70, 100));
+        jLayeredPane1.add(jLabelCommunityCard4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, -1, 100));
 
         jLabelCommunityCard5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/images/52.png"))); // NOI18N
-        jLayeredPane1.add(jLabelCommunityCard5, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 160, 70, 100));
+        jLayeredPane1.add(jLabelCommunityCard5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 140, 70, 100));
 
         jButtonRaise.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         jButtonRaise.setText("Raise");
@@ -358,7 +372,7 @@ public class GameInterface extends javax.swing.JFrame {
                 jButtonRaiseActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jButtonRaise, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 320, -1, -1));
+        jLayeredPane1.add(jButtonRaise, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, -1, -1));
 
         jButtonFold.setBackground(new java.awt.Color(240, 240, 0));
         jButtonFold.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
@@ -368,7 +382,7 @@ public class GameInterface extends javax.swing.JFrame {
                 jButtonFoldActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jButtonFold, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 320, 80, -1));
+        jLayeredPane1.add(jButtonFold, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, 80, -1));
 
         jTextFieldPlayerBet.setText("0");
         jTextFieldPlayerBet.addInputMethodListener(new java.awt.event.InputMethodListener() {
@@ -383,7 +397,7 @@ public class GameInterface extends javax.swing.JFrame {
                 jTextFieldPlayerBetActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jTextFieldPlayerBet, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, 50, 30));
+        jLayeredPane1.add(jTextFieldPlayerBet, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 50, 30));
 
         bot2Balance.setEditable(false);
         bot2Balance.setText("0");
@@ -392,7 +406,7 @@ public class GameInterface extends javax.swing.JFrame {
                 bot2BalanceActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(bot2Balance, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 50, 30));
+        jLayeredPane1.add(bot2Balance, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 50, 30));
 
         jButtonNewRound.setBackground(new java.awt.Color(51, 153, 255));
         jButtonNewRound.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
@@ -412,7 +426,7 @@ public class GameInterface extends javax.swing.JFrame {
                 jButtonCallActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jButtonCall, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 80, -1));
+        jLayeredPane1.add(jButtonCall, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 80, -1));
 
         jLabel13.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -422,32 +436,32 @@ public class GameInterface extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Winner:");
-        jLayeredPane1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 140, 70, 20));
+        jLayeredPane1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 440, 70, 20));
 
-        jTextField1.setText("0");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        potBalance.setText("0");
+        potBalance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                potBalanceActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 50, -1));
+        jLayeredPane1.add(potBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 50, -1));
 
         playerBalance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 playerBalanceActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(playerBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 390, 80, -1));
+        jLayeredPane1.add(playerBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 390, 80, -1));
 
         jLabel1.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Player's Balance");
-        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 360, -1, -1));
+        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 360, -1, -1));
 
-        PlayerName.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
-        PlayerName.setForeground(new java.awt.Color(255, 255, 255));
-        PlayerName.setToolTipText("");
-        jLayeredPane1.add(PlayerName, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 400, 90, 20));
+        player1Name.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
+        player1Name.setForeground(new java.awt.Color(255, 255, 255));
+        player1Name.setToolTipText("");
+        jLayeredPane1.add(player1Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 90, 20));
 
         jLabel3.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -457,11 +471,11 @@ public class GameInterface extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("'s Cards");
-        jLayeredPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, 80, 20));
+        jLayeredPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, 80, 20));
 
         winnerLabel.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         winnerLabel.setForeground(new java.awt.Color(255, 255, 255));
-        jLayeredPane1.add(winnerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 170, 90, 30));
+        jLayeredPane1.add(winnerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 440, 160, 30));
 
         jTextFieldWinner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jTextFieldWinner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/gameInterfaceBackground.jpg"))); // NOI18N
@@ -500,20 +514,15 @@ public class GameInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_bot2BalanceActionPerformed
 
     private void jButtonNewRoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewRoundActionPerformed
-        
-
 
     }//GEN-LAST:event_jButtonNewRoundActionPerformed
 
-
     private void jButtonFoldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFoldActionPerformed
-
 
     }//GEN-LAST:event_jButtonFoldActionPerformed
 
     private void jButtonRaiseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRaiseActionPerformed
         // TODO add your handling code here:
-
 
     }//GEN-LAST:event_jButtonRaiseActionPerformed
 
@@ -539,10 +548,10 @@ public class GameInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_bot1BalanceActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void potBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_potBalanceActionPerformed
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_potBalanceActionPerformed
 
     private void playerBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playerBalanceActionPerformed
         // TODO add your handling code here:
@@ -602,16 +611,6 @@ public class GameInterface extends javax.swing.JFrame {
     }
 
     public int betIndividual(int currentIndex) {
-        String callOrCheck = equalBets() ? "check" : "call"; //if all bets are the same ask user to do check or call
-        showRiver();
-        String playerResponse = "fold";
-        if (playerResponse.toLowerCase().contains("fold")) {
-            foldFunction(this.playerList.get(currentIndex));
-        } else if (playerResponse.toLowerCase().contains("call")) {
-            callFunction(this.playerList.get(currentIndex));
-        } else if (playerResponse.toLowerCase().contains("raise")) {
-            raiseFunction(this.playerList.get(currentIndex));
-        }
         currentIndex++;
         if (currentIndex == this.playerList.size()) {
             currentIndex = 0; //if the index hits the size of the array then return it to zero
@@ -638,6 +637,7 @@ public class GameInterface extends javax.swing.JFrame {
     }
 
     public void payOutWinner(ArrayList<Player> winner) {
+        this.pot = Integer.parseInt(potBalance.getText());
         int tempWinner = this.pot / winner.size();
         for (int i = 0; i < winner.size(); i++) {
             winner.get(i).addToBalance(tempWinner);
@@ -673,13 +673,6 @@ public class GameInterface extends javax.swing.JFrame {
     }
 
     public void showRiver() {
-        if (this.theCommunityCards[0] != null && this.theCommunityCards[3] == null && this.theCommunityCards[4] == null) {
-//            System.out.println("The Flop:");
-        } else if (this.theCommunityCards[3] != null && this.theCommunityCards[4] == null) {
-//            System.out.println("The Turn:");
-        } else if (this.theCommunityCards[4] != null) {
-//            System.out.println("The River:");
-        }
         System.out.println(Arrays.toString(this.theCommunityCards));
     }
 
@@ -695,66 +688,81 @@ public class GameInterface extends javax.swing.JFrame {
         }
         showRiver();
     }
-    
-    
-    
+
     public void whoWon() {
         ArrayList<Player> winner = new ArrayList<>();
         winner = royalFlush();
         if (winner.size() > 0) {
             payOutWinner(winner);
+            playerBestHand.setText("Royal Flush");
+            winnerLabel.setText(String.valueOf(winner));
             return;
         }
         winner = straightFlush();
         if (winner.size() > 0) {
             payOutWinner(winner);
+            playerBestHand.setText("Straight Flush");
+            winnerLabel.setText(String.valueOf(winner));
             return;
         }
         winner = fourOfaKind();
         if (winner.size() > 0) {
             payOutWinner(winner);
+            playerBestHand.setText("Four of a Kind");
+            winnerLabel.setText(String.valueOf(winner));
             return;
         }
         winner = straight();
         if (winner.size() > 0) {
             payOutWinner(winner);
+            playerBestHand.setText("Straight");
+            winnerLabel.setText(String.valueOf(winner));
             return;
         }
         winner = fullHouse();
         if (winner.size() > 0) {
             payOutWinner(winner);
+            playerBestHand.setText("Full House");
+            winnerLabel.setText(String.valueOf(winner));
             return;
         }
         winner = Flush();
         if (winner.size() > 0) {
             payOutWinner(winner);
-            return;
-        }
-        winner = straight();
-        if (winner.size() > 0) {
-            payOutWinner(winner);
+            playerBestHand.setText("Flush");
+            winnerLabel.setText(String.valueOf(winner));
             return;
         }
         winner = threeOfaKind();
         if (winner.size() > 0) {
             payOutWinner(winner);
+            playerBestHand.setText("Three of a Kind");
+            winnerLabel.setText(String.valueOf(winner));
             return;
         }
         winner = twoPairs();
         if (winner.size() > 0) {
             payOutWinner(winner);
+            playerBestHand.setText("Two Pairs");
+            winnerLabel.setText(String.valueOf(winner));
             return;
         }
         winner = onePair();
         if (winner.size() > 0) {
             payOutWinner(winner);
+            playerBestHand.setText("One Pair");
+            winnerLabel.setText(String.valueOf(winner));
             return;
         }
         winner = highCard();
         if (winner.size() > 0) {
             payOutWinner(winner);
+            playerBestHand.setText("High Card");
+            winnerLabel.setText(String.valueOf(winner));
+            return;
         }
-        System.out.println(winner);
+        winnerLabel.setText(String.valueOf(winner));
+        System.err.println(winner);
     }
 
     public ArrayList<Player> royalFlush() {
@@ -897,10 +905,10 @@ public class GameInterface extends javax.swing.JFrame {
                     }
                 }
                 if (hearts >= 5 || diamonds >= 5 || clubs >= 5 || spades >= 5) {
-
+                    winner.add(currentPlayer);
                 }
             }
-            winner.add(currentPlayer);
+
         }
         return winner;
     }
@@ -1119,15 +1127,13 @@ public class GameInterface extends javax.swing.JFrame {
         jButtonCall.setEnabled(true);
         jButtonCheck.setEnabled(true);
     }
-    
+
     public void enableCheckButtons() {
         jButtonRaise.setEnabled(false);
         jButtonCall.setEnabled(false);
         jButtonCheck.setEnabled(true);
 
     }
-    
-    
 
     public void disableCallButtons() {
         jButtonRaise.setEnabled(false);
@@ -1192,7 +1198,6 @@ public class GameInterface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JLabel PlayerName;
     public javax.swing.JTextField bot1Balance;
     private javax.swing.JTextField bot2Balance;
     private javax.swing.JLabel computerBestHand;
@@ -1226,14 +1231,15 @@ public class GameInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelPlayerCard1;
     private javax.swing.JLabel jLabelPlayerCard2;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextFieldComputerBet1;
     private javax.swing.JTextField jTextFieldComputerBet2;
     public javax.swing.JTextField jTextFieldPlayerBet;
     private javax.swing.JLabel jTextFieldWinner;
+    public javax.swing.JLabel player1Name;
     private javax.swing.JTextField playerBalance;
     private javax.swing.JLabel playerBestHand;
+    private javax.swing.JTextField potBalance;
     private javax.swing.JLabel winnerLabel;
     // End of variables declaration//GEN-END:variables
 
