@@ -58,17 +58,7 @@ public class Player {
     
     public static void main(String[] args){
         
-        //test
-        cards[] playerCards = {new cards(1,"Hearts"), new cards(2,"Hearts")};
-        Player player1 = new Player("Steve", 150, playerCards);
         
-        
-        System.out.println(player1.getName());
-        System.out.println(player1.getBalance());
-        player1.addToBalance(5);
-        System.out.println(player1.getBalance());
-        System.out.println(Arrays.toString(player1.getplayerCards()));
-        System.out.println(player1.toString());
         
     }
     

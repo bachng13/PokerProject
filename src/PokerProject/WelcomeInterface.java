@@ -111,7 +111,7 @@ public class WelcomeInterface extends javax.swing.JFrame {
         jLayeredPane1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, 160, 30));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/background.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/comp2Images/background.jpg"))); // NOI18N
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel1.setMaximumSize(new java.awt.Dimension(840, 394));
         jLabel1.setMinimumSize(new java.awt.Dimension(840, 394));
