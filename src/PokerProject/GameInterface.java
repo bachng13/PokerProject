@@ -45,13 +45,17 @@ public class GameInterface extends javax.swing.JFrame {
         this.dealer = dealer;
 //        setupGame();
         Deck.shuffle();
+        jButtonCall.setEnabled(false);
+        
+        String name = String.valueOf(player1Name.getText());
+        System.err.println(name);
         cards[] playerCards = {Deck.nextCard(), Deck.nextCard()};
         cards[] bot1Cards = {Deck.nextCard(), Deck.nextCard()};
         cards[] bot2Cards = {Deck.nextCard(), Deck.nextCard()};
-        Player player1 = new Player(player1Name.getText(), balanceInitial, playerCards);
+        Player player1 = new Player("Human Player", balanceInitial, playerCards);
         Player bot1 = new Player("Peter", balanceInitial, bot1Cards);
         Player bot2 = new Player("Polly", balanceInitial, bot2Cards);
-
+        
         //add each player in ArrayList to easier manage
         playerList.add(player1);
         playerList.add(bot1);
@@ -62,6 +66,7 @@ public class GameInterface extends javax.swing.JFrame {
         this.turnCounter = 0;
 
         jButtonNewRound.addActionListener((ActionEvent ae) -> {
+            player1.setName(player1Name.getText());
             setupGame();
             turnCounter += 1;
             System.out.println(turnCounter);
@@ -135,9 +140,9 @@ public class GameInterface extends javax.swing.JFrame {
         jButtonRaise.addActionListener((ActionEvent ae) -> {
             this.pot = Integer.parseInt(potBalance.getText());
             raiseFunction(player1);
-            callFunction(bot1);
-            callFunction(bot2);
-            potBalance.setText(String.valueOf(pot + Integer.parseInt(jTextFieldPlayerBet.getText())));
+            bot1.reduceFromBalance(Integer.parseInt(jTextFieldPlayerBet.getText()));
+            bot2.reduceFromBalance(Integer.parseInt(jTextFieldPlayerBet.getText()));
+            potBalance.setText(String.valueOf(pot + Integer.parseInt(jTextFieldPlayerBet.getText())*3));
             jTextFieldPlayerBet.setText("0");
             playerBalance.setText(String.valueOf(playerList.get(0).getBalance()));
             bot1Balance.setText(String.valueOf(playerList.get(1).getBalance()));
@@ -145,8 +150,7 @@ public class GameInterface extends javax.swing.JFrame {
         });
 
         jButtonCall.addActionListener((ActionEvent ae) -> {
-            callFunction(player1);
-            
+            callFunction(player1);            
         });
 
         jButtonFold.addActionListener((ActionEvent ae) -> {
@@ -161,6 +165,7 @@ public class GameInterface extends javax.swing.JFrame {
         });
 
         jButtonCheck.addActionListener((ActionEvent ae) -> {
+            System.out.println(player1.getName());
             this.pot = Integer.parseInt(potBalance.getText());
             jLabelCommunityCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(theCommunityCards[0]) + ".png")));
             jLabelCommunityCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(theCommunityCards[1]) + ".png")));
@@ -224,10 +229,10 @@ public class GameInterface extends javax.swing.JFrame {
         player1Name = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        winnerLabel = new javax.swing.JLabel();
         bot1Balance = new javax.swing.JLabel();
         bot2Balance = new javax.swing.JLabel();
         playerBalance = new javax.swing.JLabel();
+        winnerLabel = new javax.swing.JLabel();
         jTextFieldWinner = new javax.swing.JLabel();
 
         jTextField2.setText("jTextField2");
@@ -382,7 +387,7 @@ public class GameInterface extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Winner:");
-        jLayeredPane1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 440, 70, 30));
+        jLayeredPane1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 430, 70, 30));
 
         potBalance.setText("0");
         potBalance.addActionListener(new java.awt.event.ActionListener() {
@@ -412,18 +417,21 @@ public class GameInterface extends javax.swing.JFrame {
         jLabel4.setText("'s Cards");
         jLayeredPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 80, 20));
 
-        winnerLabel.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
-        winnerLabel.setForeground(new java.awt.Color(255, 255, 255));
-        jLayeredPane1.add(winnerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 440, 80, 30));
-
         bot1Balance.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         bot1Balance.setForeground(new java.awt.Color(255, 255, 255));
         jLayeredPane1.add(bot1Balance, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 50, 30));
+
+        bot2Balance.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
+        bot2Balance.setForeground(new java.awt.Color(255, 255, 255));
         jLayeredPane1.add(bot2Balance, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 50, 30));
 
         playerBalance.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
         playerBalance.setForeground(new java.awt.Color(255, 255, 255));
         jLayeredPane1.add(playerBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, 70, 30));
+
+        winnerLabel.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
+        winnerLabel.setForeground(new java.awt.Color(255, 255, 255));
+        jLayeredPane1.add(winnerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 430, 170, 30));
 
         jTextFieldWinner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jTextFieldWinner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/comp2Images/gameInterfaceBackground.jpg"))); // NOI18N
@@ -1093,6 +1101,10 @@ public class GameInterface extends javax.swing.JFrame {
 
     public int getPlayerBet() {
         return Integer.parseInt(jTextFieldPlayerBet.getText());
+    }
+    
+    public String getPlayerName(){
+        return String.valueOf(player1Name.getText());
     }
 
     public void setDisplayWinner(String text) {

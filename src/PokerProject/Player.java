@@ -23,6 +23,10 @@ public class Player {
         return this.playerName;
     }
     
+    public void setName(String nameString){
+        this.playerName = nameString;
+    }
+    
     public int getBalance(){
         return this.balance;
     }
