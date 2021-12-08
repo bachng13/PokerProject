@@ -112,12 +112,10 @@ public class GameInterface extends javax.swing.JFrame {
                 jLabelComputerCard4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/comp2Images/52.png")));
                 Deck.reset();
                 Deck.shuffle();
-                playerList.get(0).getplayerCards()[0] = Deck.nextCard();
-                playerList.get(0).getplayerCards()[1] = Deck.nextCard();
-                playerList.get(1).getplayerCards()[0] = Deck.nextCard();
-                playerList.get(1).getplayerCards()[1] = Deck.nextCard();
-                playerList.get(2).getplayerCards()[0] = Deck.nextCard();
-                playerList.get(2).getplayerCards()[1] = Deck.nextCard();
+                for(int i = 0; i < playerList.size(); i++){
+                    playerList.get(i).getplayerCards()[0] = Deck.nextCard();
+                    playerList.get(i).getplayerCards()[1] = Deck.nextCard();
+                }
                 jLabelPlayerCard1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(playerList.get(0).getplayerCards()[0]) + ".png")));
                 jLabelPlayerCard2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PokerProject/Images/" + String.valueOf(playerList.get(0).getplayerCards()[1]) + ".png")));
                 pot = 150;
@@ -128,8 +126,9 @@ public class GameInterface extends javax.swing.JFrame {
                 winnerLabel.setText(" ");
                 playerBestHand.setText(" ");
             }
-            if (player1.getBalance() < 0) {
+            if (player1.getBalance() <= 0) {
                 player1.setIsInGame(false);
+                JOptionPane.showMessageDialog(null,"Game Over");
             } else if (bot1.getBalance() < 0) {
                 bot1.setIsInGame(false);
             } else if (bot2.getBalance() < 0) {
@@ -198,6 +197,7 @@ public class GameInterface extends javax.swing.JFrame {
     private void initComponents() {
 
         jTextField2 = new javax.swing.JTextField();
+        jDialog1 = new javax.swing.JDialog();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jButton1 = new javax.swing.JButton();
         computerBestHand = new javax.swing.JLabel();
@@ -236,6 +236,17 @@ public class GameInterface extends javax.swing.JFrame {
         jTextFieldWinner = new javax.swing.JLabel();
 
         jTextField2.setText("jTextField2");
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -1148,6 +1159,7 @@ public class GameInterface extends javax.swing.JFrame {
     private javax.swing.JButton jButtonHelp;
     private javax.swing.JButton jButtonNewRound;
     private javax.swing.JButton jButtonRaise;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
